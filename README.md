@@ -10,7 +10,7 @@ https://raw.githubusercontent.com/user_name/repo_name/main/best.onnx
 
 ## 檔案結構
 ```
-config.txt   # model 的raw file
+config.txt   # model 的raw file URL
 
 components/
  ├─ CameraDetection.tsx   # 主元件，整合攝影機串流、ONNX 模型與偵測流程
@@ -24,4 +24,7 @@ utils/
  ├─ detectionLoop.ts      # 偵測迴圈：從影像擷取 → 模型推論 → 繪製結果
  ├─ imageProcessing.ts    # 影像前處理工具，將影像轉換成模型可用格式
  └─ nms.ts                # Non-Maximum Suppression，過濾重疊的偵測框
+
+dist/   # 打包好的檔案(可直接在nginx掛載)
+
 ```
