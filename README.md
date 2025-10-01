@@ -6,8 +6,19 @@
 ```
 https://raw.githubusercontent.com/user_name/repo_name/main/best.onnx
 ```
-- 模型輸出格式：ONNX 模型的輸出 shape 為 [1, 5, 8400]（不包含分類機率）。其中 5 個通道依序代表：`[x, y, w, h, confidence]`。
-
+## 模型輸出格式：
+### ONNX 模型的輸出 shape 為 [1, channels, 8400]。
+#### 其中 `channels = 4 + numClasses`
+- 前 4 個通道為邊界框資訊：`[x, y, w, h]`
+- 之後的通道為各類別的分數
+#### 例如：
+- `[1, 5, 8400]` → 1 類別（4 + 1）
+- `[1, 6, 8400]` → 2 類別（4 + 2）
+### 類別對應(two class的model)
+- classId = 0 → cap
+- classId = 1 → tab
+### 建議作法
+- 依照輸出 shape 的 `channels` 自動判斷類別數 (`numClasses = channels - 4`)。
 ## 檔案結構
 ```
 config.txt   # model 的raw file URL
